@@ -1,0 +1,23 @@
+# Corpora (not redistributed, see data/README.md)
+data/*
+!data/README.md
+movies1000/
+corpus.tache1.*
+
+# Model checkpoints and submissions
+checkpoints/
+outputs/
+*.bin
+*.safetensors
+*.pt
+submission*.txt
+
+# Python / Jupyter
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,15 @@
+# Notebooks were run on Google Colab (GPU) with these libraries.
+torch
+transformers
+datasets
+accelerate
+sentencepiece
+protobuf
+scikit-learn
+pandas
+numpy
+nltk
+fasttext
+matplotlib
+wordcloud
+tqdm
