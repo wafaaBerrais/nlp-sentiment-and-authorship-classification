@@ -61,12 +61,13 @@ The validation set is a stratified 20% split (400 reviews). The test scores come
 
 **Approach**
 
-1. **Split by document** *before* building any training example, so that sentences from the same speech never appear in both train and test (no leakage).
-2. **Training on speaker-homogeneous chunks** of consecutive sentences (up to 250 words), rather than on isolated sentences, to give the model enough stylistic signal.
-3. **Contextual prediction:** at test time, each sentence is classified inside a context window of the surrounding text (250 words).
-4. **Model:** fine-tuned `camembert/camembert-large`.
-5. **Variants explored:** class-weighted loss with early stopping, longer chunks (350 words), frontier-aware chunking near speaker changes, and context window sizes from 120 to 350 words.
-6. **Error analysis:** errors concentrate in mixed documents and near speaker transitions.
+1. **Baseline:** CamemBERT classifying each sentence on its own, without any context.
+2. **Split by document** *before* building any training example, so that sentences from the same speech never appear in both train and test (no leakage).
+3. **Training on speaker-homogeneous chunks** of consecutive sentences (up to 250 words), rather than on isolated sentences, to give the model enough stylistic signal.
+4. **Contextual prediction:** at test time, each sentence is classified inside a context window of the surrounding text (250 words).
+5. **Model:** fine-tuned `camembert/camembert-large`.
+6. **Variants explored:** class-weighted loss with early stopping, longer chunks (350 words), frontier-aware chunking near speaker changes, and context window sizes from 120 to 350 words.
+7. **Error analysis:** errors concentrate in mixed documents and near speaker transitions.
 
 **Results** (sentence-level local test set, document-disjoint; precision, recall and F1 are for the minority class, Mitterrand)
 
@@ -96,6 +97,7 @@ The best submission on the hidden test set reached **F1 = 86.9** (precision 78.1
 │   ├── 08_tuning_deberta_vote.ipynb
 │   └── 09_final_ensemble_submissions.ipynb      # final system
 ├── authorship/
+│   ├── 00_sentence_baseline.ipynb                  # CamemBERT sentence by sentence, no context
 │   ├── 01_context_chunks_camembert.ipynb
 │   ├── 02_weighted_loss_early_stopping.ipynb
 │   ├── 03_speaker_boundaries.ipynb
